@@ -247,19 +247,23 @@ h1, h2, h3, h4, h5, h6 {
 .food-card {
     background: var(--white);
     border-radius: 30px;
-    padding: 2rem 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
     text-align: center;
     box-shadow: var(--shadow-soft);
     border: none;
     height: 100%;
-    margin-top: 80px;
+    margin-top: 100px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 
 .card-img-wrapper {
-    margin-top: -60px;
+    position: relative;
+    z-index: 2;
+    margin-top: -80px;
     margin-bottom: 1.5rem;
 }
 
@@ -435,7 +439,7 @@ footer {
 /* Page Header */
 .page-header {
     background: var(--primary);
-    padding: 120px 0 60px;
+    padding: 140px 0 80px;
     text-align: center;
     color: var(--white);
     margin-bottom: 80px;
