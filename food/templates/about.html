@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - FOODIED{% endblock title %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">About Us</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-white">Home</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page">About</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- About Section -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6">
+                <div class="pe-lg-5">
+                    <span class="text-primary fw-bold text-uppercase tracking-wider">Our Story</span>
+                    <h2 class="display-5 fw-bold mb-4 mt-2">Traditional Taste <br> <span class="text-primary">Gourmet Experience</span></h2>
+                    <p class="lead text-muted mb-4">
+                        FOODIED restaurant and take away was established with a simple mission: to bring the authentic, fresh taste of gourmet cuisine to your table.
+                    </p>
+                    <p class="text-muted mb-4">
+                        Since our inception, we have built a reputation for excellence, combining traditional recipes with the finest, locally-sourced ingredients. Our passion for quality is reflected in every dish we serve, whether you're dining in our premium space or enjoying our elite takeaway service.
+                    </p>
+                    <div class="row g-4 mt-2">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary-light p-3 rounded-circle me-3">
+                                    <i class="fas fa-utensils text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">Premium Food</h5>
+                                    <small class="text-muted">High-quality ingredients</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary-light p-3 rounded-circle me-3">
+                                    <i class="fas fa-shipping-fast text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-0">Fast Delivery</h5>
+                                    <small class="text-muted">Fresh & Hot delivery</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <a href="{% url 'menu' %}" class="btn btn-primary px-5 py-3 rounded-pill">Explore Our Menu</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <div class="about-image-wrapper">
+                        <img src="{% static 'img/chef.png' %}" alt="Our Chef" class="img-fluid rounded-4 shadow-lg">
+                    </div>
+                    <div class="experience-badge bg-primary text-white p-4 rounded-4 shadow position-absolute bottom-0 start-0 mb-4 ms-n4 d-none d-md-block">
+                        <h2 class="fw-bold mb-0">15+</h2>
+                        <p class="mb-0">Years of Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="section-padding bg-light">
+    <div class="container text-center">
+        <div class="row g-4">
+            <div class="col-md-3 col-6">
+                <h2 class="display-5 fw-bold text-primary mb-2">150+</h2>
+                <p class="text-muted fw-medium mb-0">Dishes Served</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <h2 class="display-5 fw-bold text-primary mb-2">50k+</h2>
+                <p class="text-muted fw-medium mb-0">Happy Customers</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <h2 class="display-5 fw-bold text-primary mb-2">20+</h2>
+                <p class="text-muted fw-medium mb-0">Expert Chefs</p>
+            </div>
+            <div class="col-md-3 col-6">
+                <h2 class="display-5 fw-bold text-primary mb-2">10+</h2>
+                <p class="text-muted fw-medium mb-0">Branches Open</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

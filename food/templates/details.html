@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{detail.title}} - FOODIED{% endblock title %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header mb-0">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Dish Details</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-white">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'menu' %}" class="text-white">Menu</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page">{{detail.title}}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <!-- Product Image -->
+            <div class="col-lg-6">
+                <div class="product-image-container p-4 bg-white rounded-4 shadow-sm">
+                    <img src="{{detail.img.url}}" alt="{{detail.title}}" class="img-fluid rounded-4 w-100 shadow-sm">
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-lg-6">
+                <div class="product-details pe-lg-5">
+                    <span class="badge bg-primary-light text-primary px-3 py-2 rounded-pill mb-3">Premium Dish</span>
+                    <h1 class="display-5 fw-bold mb-3">{{detail.title}}</h1>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="text-primary me-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-muted">(4.9 / 5.0 Rating)</span>
+                    </div>
+                    <h2 class="display-6 text-primary fw-bold mb-4">£{{detail.price}}</h2>
+                    
+                    <div class="mb-4">
+                        <h5 class="fw-bold mb-2">Description</h5>
+                        <p class="text-muted lead">{{detail.description}}</p>
+                    </div>
+
+                    <div class="features-list mb-5">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span class="text-muted">Fresh Ingredients</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span class="text-muted">Chef's Special</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span class="text-muted">Fast Delivery</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span class="text-muted">Eco-Packaging</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Form -->
+                    <form action="{% url 'shopcart' %}" method="post" class="mt-4">
+                        {% csrf_token %}
+                        <input type="hidden" name="menu_id" value="{{detail.id}}">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="quantity-wrapper" style="width: 120px;">
+                                <label class="small text-muted mb-1 d-block">Quantity</label>
+                                <input type="number" name="quantity" value="1" min="{{detail.min_quantity}}" max="{{detail.max_quantity}}" class="form-control rounded-pill border-2 px-3 py-2">
+                            </div>
+                            <div class="flex-grow-1 align-self-end">
+                                <button type="submit" class="btn btn-primary w-100 rounded-pill py-3 fw-bold shadow-lg">
+                                    <i class="fas fa-shopping-basket me-2"></i> Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products Section -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">You May Also Like</h2>
+            <p class="text-muted">Perfect pairings for your selected dish</p>
+        </div>
+        <div class="row g-4">
+            <!-- Mock Related Items (Since we don't have context for related) -->
+            <div class="col-lg-3 col-md-6">
+                <div class="menu-card bg-white rounded-4 shadow-sm overflow-hidden border-0">
+                    <img src="{% static 'img/burger.png' %}" alt="Burger" class="img-fluid w-100">
+                    <div class="p-3">
+                        <h6 class="fw-bold mb-1">Gourmet Burger</h6>
+                        <p class="text-primary fw-bold mb-0">£12.99</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="menu-card bg-white rounded-4 shadow-sm overflow-hidden border-0">
+                    <img src="{% static 'img/pizza.png' %}" alt="Pizza" class="img-fluid w-100">
+                    <div class="p-3">
+                        <h6 class="fw-bold mb-1">Elite Margherita</h6>
+                        <p class="text-primary fw-bold mb-0">£15.50</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="menu-card bg-white rounded-4 shadow-sm overflow-hidden border-0">
+                    <img src="{% static 'img/dessert.png' %}" alt="Dessert" class="img-fluid w-100">
+                    <div class="p-3">
+                        <h6 class="fw-bold mb-1">Velvet Cheesecake</h6>
+                        <p class="text-primary fw-bold mb-0">£8.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="menu-card bg-white rounded-4 shadow-sm overflow-hidden border-0">
+                    <img src="{% static 'img/burger.png' %}" alt="Burger" class="img-fluid w-100">
+                    <div class="p-3">
+                        <h6 class="fw-bold mb-1">Classic Chicken</h6>
+                        <p class="text-primary fw-bold mb-0">£11.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

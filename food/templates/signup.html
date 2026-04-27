@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}- Join Foodied{% endblock %}
+
+{% block content %}
+    <section class="page-header">
+        <div class="container">
+            <h1>Create Account</h1>
+            <p>Join the Foodied community and enjoy exclusive offers.</p>
+        </div>
+    </section>
+
+    <section class="section-padding pt-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="premium-form-container">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row gy-4">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">First Name</label>
+                                    <input type="text" name="first_name" class="form-control" placeholder="John" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control" placeholder="Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Username</label>
+                                    <input type="text" name="username" class="form-control" placeholder="johndoe123" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Email Address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Phone Number</label>
+                                    <input type="text" name="phone" class="form-control" placeholder="+234 900 000 0000" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">State</label>
+                                    <input type="text" name="state" class="form-control" placeholder="Lagos" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold">Address</label>
+                                    <input type="text" name="address" class="form-control" placeholder="123 Food Street, Ikeja" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Confirm Password</label>
+                                    <input type="password" name="confirm_password" class="form-control" placeholder="••••••••" required>
+                                </div>
+                                <input type="hidden" name="pix" value="avatar.png">
+                            </div>
+                            
+                            <div class="mt-5">
+                                <button type="submit" class="btn-premium">Create My Account</button>
+                            </div>
+                        </form>
+                        <div class="text-center mt-5">
+                            <p class="mb-0">Already have an account? <a href="{% url 'signin' %}" class="text-primary fw-bold text-decoration-none">Sign In</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

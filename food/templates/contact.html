@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}- Contact Us{% endblock %}
+
+{% block content %}
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-white text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <section class="section-padding pt-0">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-lg-5">
+                    <div class="contact-info-premium">
+                        <h2 class="mb-4">Get In Touch</h2>
+                        <p class="mb-5">Have a question or just want to say hi? We'd love to hear from you. Fill out the form and our team will get back to you shortly.</p>
+                        
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="feature-icon me-3" style="width: 50px; height: 50px; margin: 0;"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <h5 class="mb-0">Location</h5>
+                                <p class="mb-0">123 Food Street, Lagos, Nigeria</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="feature-icon me-3" style="width: 50px; height: 50px; margin: 0;"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <h5 class="mb-0">Phone</h5>
+                                <p class="mb-0">+234 903 998 0621</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon me-3" style="width: 50px; height: 50px; margin: 0;"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <h5 class="mb-0">Email</h5>
+                                <p class="mb-0">hello@foodied.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <div class="premium-form-container">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label class="form-label fw-bold">Full Name</label>
+                                    <input type="text" name="full_name" class="form-control" placeholder="John Doe" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label class="form-label fw-bold">Email Address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label class="form-label fw-bold">Message</label>
+                                <textarea name="message" class="form-control" rows="5" placeholder="How can we help you?" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-premium mt-4">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="container-fluid p-0">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126846.54162483108!2d3.2981503!3d6.5243793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a3da577a9!2sLagos!5e0!3m2!1sen!2sng!4v1652437930000!5m2!1sen!2sng" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+{% endblock %}

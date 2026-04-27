@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}- Full Menu{% endblock %}
+
+{% block content %}
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Full Menu</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-white text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Menu</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <section class="section-padding pt-0">
+        <div class="container">
+            <div class="row">
+                {% if menu %}
+                    {% for item in menu %}
+                    <div class="col-lg-3 col-md-6 mb-5">
+                        <div class="food-card">
+                            <div class="card-img-wrapper">
+                                <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
+                            </div>
+                            <h3>{{ item.title }}</h3>
+                            <p class="text-truncate">{{ item.description }}</p>
+                            <div class="card-footer-flex">
+                                <span class="price">${{ item.price }}</span>
+                                <a href="#" class="btn-add-cart"><i class="fa-solid fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12 text-center">
+                        <h3>No items found in the menu.</h3>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

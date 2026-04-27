@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}- Premium Food Delivery{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-shape"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hungry-badge">Hungry?</div>
+                    <h1 class="hero-title">Just Come To <br> <span style="color: var(--primary);">Foodied</span> & Order</h1>
+                    <p class="hero-subtitle">Experience the finest culinary delights delivered straight to your doorstep. Quality, taste, and speed combined.</p>
+                    <div class="hero-btns">
+                        <a href="{% url 'menu' %}" class="btn-primary-pill">Order Now</a>
+                        <a href="{% url 'about' %}" class="btn-outline-pill">Explore More <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="hero-image-container">
+                        <img src="{% static 'img/hero_food.png' %}" alt="Hero Food" class="main-hero-img">
+                        <img src="{% static 'img/burger.png' %}" alt="Floating 1" class="floating-img f1">
+                        <img src="{% static 'img/pizza.png' %}" alt="Floating 2" class="floating-img f2">
+                        <img src="{% static 'img/dessert.png' %}" alt="Floating 3" class="floating-img f3">
+                        <img src="{% static 'img/hero_food.png' %}" alt="Floating 4" class="floating-img f4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="section-tag">Why Choose Us?</span>
+                <h2 class="section-title">We Deliver The Best Taste</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <h3>Serve Healthy Food</h3>
+                    <p>We use only organic and fresh ingredients for all our meals.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+                    <h3>Best Quality</h3>
+                    <p>Our chefs are world-class professionals dedicated to excellence.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3>Fast Delivery</h3>
+                    <p>Hot food at your doorstep within 30 minutes, guaranteed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section (Featured) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="section-tag">Our Menu</span>
+                <h2 class="section-title">Explore Our Delicious Items</h2>
+            </div>
+
+            <!-- Breakfast -->
+            <div class="row mb-5">
+                <div class="col-12"><h3 class="mb-4">Breakfast Specials</h3></div>
+                {% if breakfast %}
+                    {% for item in breakfast %}
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="food-card">
+                            <div class="card-img-wrapper">
+                                <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
+                            </div>
+                            <h3>{{ item.title }}</h3>
+                            <p class="text-truncate">{{ item.description }}</p>
+                            <div class="card-footer-flex">
+                                <span class="price">${{ item.price }}</span>
+                                <a href="{% url 'menu' %}" class="btn-add-cart"><i class="fa-solid fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Lunch -->
+            <div class="row mb-5">
+                <div class="col-12"><h3 class="mb-4">Lunch Favorites</h3></div>
+                {% if lunch %}
+                    {% for item in lunch %}
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="food-card">
+                            <div class="card-img-wrapper">
+                                <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
+                            </div>
+                            <h3>{{ item.title }}</h3>
+                            <p class="text-truncate">{{ item.description }}</p>
+                            <div class="card-footer-flex">
+                                <span class="price">${{ item.price }}</span>
+                                <a href="{% url 'menu' %}" class="btn-add-cart"><i class="fa-solid fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            
+            <!-- Dinner -->
+            <div class="row">
+                <div class="col-12"><h3 class="mb-4">Dinner Delights</h3></div>
+                {% if dinner %}
+                    {% for item in dinner %}
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="food-card">
+                            <div class="card-img-wrapper">
+                                <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
+                            </div>
+                            <h3>{{ item.title }}</h3>
+                            <p class="text-truncate">{{ item.description }}</p>
+                            <div class="card-footer-flex">
+                                <span class="price">${{ item.price }}</span>
+                                <a href="{% url 'menu' %}" class="btn-add-cart"><i class="fa-solid fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section-padding" style="background-color: var(--primary);">
+        <div class="container text-center text-white">
+            <h2 class="mb-4 text-white" style="font-size: 3rem;">Ready To Taste The Best Food?</h2>
+            <p class="mb-5 opacity-75">Join thousands of happy customers today.</p>
+            <a href="{% url 'signup' %}" class="btn-primary-pill" style="background: var(--dark);">Get Started Now</a>
+        </div>
+    </section>
+{% endblock %}

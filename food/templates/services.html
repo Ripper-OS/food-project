@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Services - FOODIED{% endblock title %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Our Services</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-white">Home</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page">Services</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!-- Services Section -->
+<section class="section-padding">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-primary fw-bold text-uppercase tracking-wider">What We Offer</span>
+            <h2 class="display-5 fw-bold mt-2">Premium Experience <br> <span class="text-primary">Every Step of the Way</span></h2>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <!-- Service 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card text-center p-5 bg-white rounded-4 shadow-hover h-100 transition">
+                    <div class="service-icon mb-4">
+                        <div class="bg-primary-light p-4 rounded-circle d-inline-block">
+                            <i class="fas fa-truck-loading fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                    <h4 class="fw-bold mb-3">Elite Delivery</h4>
+                    <p class="text-muted">
+                        Experience lightning-fast delivery within a 2-mile radius. We ensure your food arrives hot, fresh, and perfectly presented, just as if you were in our restaurant.
+                    </p>
+                    <ul class="list-unstyled text-start mt-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Real-time Tracking</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Eco-friendly Packaging</li>
+                        <li class="mb-0"><i class="fas fa-check-circle text-primary me-2"></i> Free for orders over £25</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card text-center p-5 bg-white rounded-4 shadow-hover h-100 transition">
+                    <div class="service-icon mb-4">
+                        <div class="bg-primary-light p-4 rounded-circle d-inline-block">
+                            <i class="fas fa-crown fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                    <h4 class="fw-bold mb-3">Loyalty Program</h4>
+                    <p class="text-muted">
+                        Join our exclusive loyalty program to unlock premium discounts, early access to new menu items, and special rewards tailored specifically for our regulars.
+                    </p>
+                    <ul class="list-unstyled text-start mt-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Accumulate Points</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Exclusive Birthday Offers</li>
+                        <li class="mb-0"><i class="fas fa-check-circle text-primary me-2"></i> VIP Reservation Access</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card text-center p-5 bg-white rounded-4 shadow-hover h-100 transition">
+                    <div class="service-icon mb-4">
+                        <div class="bg-primary-light p-4 rounded-circle d-inline-block">
+                            <i class="fas fa-mobile-alt fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                    <h4 class="fw-bold mb-3">Seamless Ordering</h4>
+                    <p class="text-muted">
+                        Our state-of-the-art online platform allows you to customize your order, schedule deliveries, and pay securely with just a few clicks from any device.
+                    </p>
+                    <ul class="list-unstyled text-start mt-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Easy Customization</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Schedule in Advance</li>
+                        <li class="mb-0"><i class="fas fa-check-circle text-primary me-2"></i> Multi-platform Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features section -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6">
+                <img src="{% static 'img/pizza.png' %}" alt="Our Pizza" class="img-fluid rounded-4 shadow">
+            </div>
+            <div class="col-lg-6">
+                <div class="ps-lg-5">
+                    <h2 class="display-6 fw-bold mb-4">Why Choose <span class="text-primary">FOODIED?</span></h2>
+                    <div class="d-flex mb-4">
+                        <div class="me-4">
+                            <div class="bg-white p-3 rounded-3 shadow-sm">
+                                <i class="fas fa-leaf text-primary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">100% Organic Ingredients</h5>
+                            <p class="text-muted">We source only the freshest, most sustainable ingredients from local farmers.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <div class="me-4">
+                            <div class="bg-white p-3 rounded-3 shadow-sm">
+                                <i class="fas fa-user-tie text-primary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Professional Chefs</h5>
+                            <p class="text-muted">Our culinary team is composed of Michelin-trained chefs dedicated to perfection.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="me-4">
+                            <div class="bg-white p-3 rounded-3 shadow-sm">
+                                <i class="fas fa-clock text-primary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">24/7 Quality Support</h5>
+                            <p class="text-muted">Our dedicated support team is always available to ensure your satisfaction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

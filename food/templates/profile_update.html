@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Update Profile - FOODIED{% endblock title %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header mb-0">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Update Profile</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-white">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'profile' %}" class="text-white">Profile</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page">Update</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3">
+                <div class="bg-white rounded-4 shadow-sm p-4 h-100">
+                    <div class="text-center mb-4">
+                        <div class="avatar-circle mx-auto mb-3">
+                            <i class="fas fa-user-circle fa-5x text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold mb-0">{{user.username}}</h5>
+                        <p class="text-muted small">{{user.email}}</p>
+                    </div>
+                    <hr class="my-4">
+                    <nav class="nav flex-column gap-2 profile-nav">
+                        <a href="{% url 'profile' %}" class="nav-link rounded-3 px-3 py-2 text-dark hover-bg-light">
+                            <i class="fas fa-user-alt me-2"></i> Profile Overview
+                        </a>
+                        <a href="{% url 'profile_update' %}" class="nav-link active rounded-3 px-3 py-2 bg-primary text-white">
+                            <i class="fas fa-user-edit me-2"></i> Edit Profile
+                        </a>
+                        <a href="{% url 'password' %}" class="nav-link rounded-3 px-3 py-2 text-dark hover-bg-light">
+                            <i class="fas fa-key me-2"></i> Change Password
+                        </a>
+                        <a href="#" class="nav-link rounded-3 px-3 py-2 text-dark hover-bg-light">
+                            <i class="fas fa-history me-2"></i> Order History
+                        </a>
+                        <a href="{% url 'signout' %}" class="nav-link rounded-3 px-3 py-2 text-danger hover-bg-light mt-4">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="col-lg-9">
+                <div class="bg-white rounded-4 shadow-sm p-5 h-100">
+                    <h4 class="fw-bold mb-4">Edit Profile Information</h4>
+                    
+                    <form action="{% url 'profile_update' %}" method="POST" class="mt-2">
+                        {% csrf_token %}
+                        <div class="row g-4">
+                            <div class="col-12 custom-form-fields">
+                                {{update}}
+                            </div>
+                            <div class="col-12 mt-5">
+                                <button type="submit" class="btn btn-primary px-5 py-3 rounded-pill fw-bold shadow-lg w-100">
+                                    Save Changes
+                                </button>
+                                <div class="text-center mt-3">
+                                    <a href="{% url 'profile' %}" class="text-muted small">Cancel and go back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Styling Django Form fields if they don't have classes */
+    .custom-form-fields p {
+        margin-bottom: 1.5rem;
+    }
+    .custom-form-fields label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--dark);
+        font-size: 0.9rem;
+    }
+    .custom-form-fields input, 
+    .custom-form-fields select, 
+    .custom-form-fields textarea {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        appearance: none;
+        border-radius: 0.5rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .custom-form-fields input:focus {
+        border-color: var(--primary);
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(125, 176, 78, 0.25);
+    }
+</style>
+{% endblock content %}

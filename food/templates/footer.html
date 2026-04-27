@@ -1,0 +1,50 @@
+{% load static %}
+<footer>
+    <div class="container">
+        <div class="row gy-5">
+            <div class="col-lg-4 col-md-6 footer-about">
+                <a class="navbar-brand logo footer-logo" href="{% url 'index' %}">FOODIED</a>
+                <p>Bringing the best flavors from our kitchen to your table. We pride ourselves on quality and freshness.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-6">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links list-unstyled">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'menu' %}">Menu</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-2 col-md-6">
+                <h4 class="footer-heading">Support</h4>
+                <ul class="footer-links list-unstyled">
+                    <li><a href="{% url 'services' %}">Our Services</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <h4 class="footer-heading">Subscribe Newsletter</h4>
+                <p class="mb-4">Get the latest updates and special offers directly in your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit" class="btn-newsletter">Join</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2026 FOODIED. All rights reserved. Premium Design by Antigravity.</p>
+        </div>
+    </div>
+</footer>

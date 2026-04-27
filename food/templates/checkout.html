@@ -1,0 +1,27 @@
+{% load humanize %}
+
+{% if summary %}
+    {% for prod in summary %}
+        <tr>
+            <td class="py-3">
+                <div class="d-flex align-items-center">
+                    <img src="{{prod.product.img.url}}" class="rounded-2 shadow-sm me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                    <span class="small fw-bold">{{prod.product.title}}</span>
+                </div>
+            </td>
+            <td class="py-3 small">£{{prod.price|floatformat:2|intcomma}}</td>
+            <td class="py-3 small text-center">{{prod.quantity}}</td>
+            <td class="py-3 small fw-bold text-primary text-end">£{{prod.amount|floatformat:2|intcomma}}</td>
+        </tr>
+    {% endfor %}
+{% endif %}
+
+<tr>
+    <td colspan="3" class="text-end py-3 border-0">
+        <span class="text-muted small fw-bold">Grand Total</span>
+    </td>
+    <td class="text-end py-3 border-0">
+        <span class="h5 fw-bold text-primary">£{{tota|floatformat:2|intcomma}}</span>
+    </td>
+</tr>
+

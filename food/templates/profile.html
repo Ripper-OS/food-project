@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Profile - FOODIED{% endblock title %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header mb-0">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">My Account</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-white">Home</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page">Profile</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3">
+                <div class="bg-white rounded-4 shadow-sm p-4 h-100">
+                    <div class="text-center mb-4">
+                        <div class="avatar-circle mx-auto mb-3">
+                            <i class="fas fa-user-circle fa-5x text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold mb-0">{{user.username}}</h5>
+                        <p class="text-muted small">{{user.email}}</p>
+                    </div>
+                    <hr class="my-4">
+                    <nav class="nav flex-column gap-2 profile-nav">
+                        <a href="{% url 'profile' %}" class="nav-link active rounded-3 px-3 py-2 bg-primary text-white">
+                            <i class="fas fa-user-alt me-2"></i> Profile Overview
+                        </a>
+                        <a href="{% url 'profile_update' %}" class="nav-link rounded-3 px-3 py-2 text-dark hover-bg-light">
+                            <i class="fas fa-user-edit me-2"></i> Edit Profile
+                        </a>
+                        <a href="{% url 'password' %}" class="nav-link rounded-3 px-3 py-2 text-dark hover-bg-light">
+                            <i class="fas fa-key me-2"></i> Change Password
+                        </a>
+                        <a href="#" class="nav-link rounded-3 px-3 py-2 text-dark hover-bg-light">
+                            <i class="fas fa-history me-2"></i> Order History
+                        </a>
+                        <a href="{% url 'signout' %}" class="nav-link rounded-3 px-3 py-2 text-danger hover-bg-light mt-4">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="col-lg-9">
+                <div class="bg-white rounded-4 shadow-sm p-5 h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold mb-0">Profile Information</h4>
+                        <a href="{% url 'profile_update' %}" class="btn btn-outline-primary btn-sm rounded-pill px-4">
+                            <i class="fas fa-edit me-1"></i> Edit
+                        </a>
+                    </div>
+                    
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light-subtle">
+                                <label class="small text-muted d-block mb-1">First Name</label>
+                                <p class="fw-bold mb-0 text-dark">{{profile.first_name|default:"Not set"}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light-subtle">
+                                <label class="small text-muted d-block mb-1">Last Name</label>
+                                <p class="fw-bold mb-0 text-dark">{{profile.last_name|default:"Not set"}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light-subtle">
+                                <label class="small text-muted d-block mb-1">Email Address</label>
+                                <p class="fw-bold mb-0 text-dark">{{user.email}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light-subtle">
+                                <label class="small text-muted d-block mb-1">Phone Number</label>
+                                <p class="fw-bold mb-0 text-dark">{{profile.phone|default:"Not set"}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="p-3 border rounded-3 bg-light-subtle">
+                                <label class="small text-muted d-block mb-1">Shipping Address</label>
+                                <p class="fw-bold mb-0 text-dark">{{profile.address|default:"Not set"}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 bg-light-subtle">
+                                <label class="small text-muted d-block mb-1">State</label>
+                                <p class="fw-bold mb-0 text-dark">{{profile.state|default:"Not set"}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <h5 class="fw-bold mb-3">Quick Actions</h5>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="p-4 bg-primary-light rounded-4 text-center">
+                                    <h3 class="fw-bold text-primary mb-1">0</h3>
+                                    <p class="text-muted small mb-0">Active Orders</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-4 bg-primary-light rounded-4 text-center">
+                                    <h3 class="fw-bold text-primary mb-1">0</h3>
+                                    <p class="text-muted small mb-0">Total Loyalty Points</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-4 bg-primary-light rounded-4 text-center">
+                                    <h3 class="fw-bold text-primary mb-1">0</h3>
+                                    <p class="text-muted small mb-0">Saved Addresses</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

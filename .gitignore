@@ -1,0 +1,8 @@
+venv/
+*.pyc
+__pycache__/
+db.sqlite3
+.gemini/
+.DS_Store
+*.log
+media/
