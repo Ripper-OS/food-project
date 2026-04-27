@@ -10,22 +10,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Simple cart increment logic (demo)
-    const addCartBtns = document.querySelectorAll('.btn-add-cart');
-    const cartBadge = document.querySelector('.cart-badge');
-    let cartCount = 0;
+    // Search overlay toggle
+    const searchToggle = document.getElementById('searchToggle');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
 
-    addCartBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    if (searchToggle && searchOverlay) {
+        searchToggle.addEventListener('click', (e) => {
             e.preventDefault();
-            cartCount++;
-            cartBadge.textContent = cartCount;
-            
-            // Animation effect
-            btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fa-solid fa-plus"></i>';
-            }, 2000);
+            searchOverlay.classList.add('active');
+            setTimeout(() => searchInput.focus(), 300);
         });
+
+        searchClose.addEventListener('click', () => {
+            searchOverlay.classList.remove('active');
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                searchOverlay.classList.remove('active');
+            }
+        });
+    }
+
+    // Auto-dismiss toast notifications after 4 seconds
+    const toasts = document.querySelectorAll('.toast.show');
+    toasts.forEach(toast => {
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.classList.add('hide');
+            setTimeout(() => toast.remove(), 300);
+        }, 4000);
     });
 });

@@ -72,6 +72,7 @@
                 {% if breakfast %}
                     {% for item in breakfast %}
                     <div class="col-lg-3 col-md-6 mb-4">
+                        <a href="{% url 'details' item.id %}" class="text-decoration-none">
                         <div class="food-card">
                             <div class="card-img-wrapper">
                                 <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
@@ -79,10 +80,11 @@
                             <h3>{{ item.title }}</h3>
                             <p class="text-truncate">{{ item.description }}</p>
                             <div class="card-footer-flex">
-                                <span class="price">${{ item.price }}</span>
-                                <a href="{% url 'menu' %}" class="btn-add-cart"><i class="fa-solid fa-plus"></i></a>
+                                <span class="price">£{{ item.price }}</span>
+                                <span class="btn-add-cart"><i class="fa-solid fa-arrow-right"></i></span>
                             </div>
                         </div>
+                        </a>
                     </div>
                     {% endfor %}
                 {% endif %}
@@ -94,6 +96,7 @@
                 {% if lunch %}
                     {% for item in lunch %}
                     <div class="col-lg-3 col-md-6 mb-4">
+                        <a href="{% url 'details' item.id %}" class="text-decoration-none">
                         <div class="food-card">
                             <div class="card-img-wrapper">
                                 <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
@@ -101,10 +104,11 @@
                             <h3>{{ item.title }}</h3>
                             <p class="text-truncate">{{ item.description }}</p>
                             <div class="card-footer-flex">
-                                <span class="price">${{ item.price }}</span>
-                                <a href="{% url 'menu' %}" class="btn-add-cart"><i class="fa-solid fa-plus"></i></a>
+                                <span class="price">£{{ item.price }}</span>
+                                <span class="btn-add-cart"><i class="fa-solid fa-arrow-right"></i></span>
                             </div>
                         </div>
+                        </a>
                     </div>
                     {% endfor %}
                 {% endif %}
@@ -116,6 +120,7 @@
                 {% if dinner %}
                     {% for item in dinner %}
                     <div class="col-lg-3 col-md-6 mb-4">
+                        <a href="{% url 'details' item.id %}" class="text-decoration-none">
                         <div class="food-card">
                             <div class="card-img-wrapper">
                                 <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
@@ -123,10 +128,11 @@
                             <h3>{{ item.title }}</h3>
                             <p class="text-truncate">{{ item.description }}</p>
                             <div class="card-footer-flex">
-                                <span class="price">${{ item.price }}</span>
-                                <a href="{% url 'menu' %}" class="btn-add-cart"><i class="fa-solid fa-plus"></i></a>
+                                <span class="price">£{{ item.price }}</span>
+                                <span class="btn-add-cart"><i class="fa-solid fa-arrow-right"></i></span>
                             </div>
                         </div>
+                        </a>
                     </div>
                     {% endfor %}
                 {% endif %}

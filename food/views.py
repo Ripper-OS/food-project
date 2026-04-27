@@ -25,9 +25,13 @@ def index(request):
 
 def menu(request):
     menu = Menu.objects.all()
+    query = request.GET.get('q', '')
+    if query:
+        menu = menu.filter(title__icontains=query) | Menu.objects.filter(description__icontains=query)
 
     context = {
-        'menu':menu,
+        'menu': menu,
+        'query': query,
     }
     return render(request, 'menu.html', context)
 
