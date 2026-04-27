@@ -247,13 +247,15 @@ h1, h2, h3, h4, h5, h6 {
 .food-card {
     background: var(--white);
     border-radius: 30px;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem 1.5rem;
     text-align: center;
     box-shadow: var(--shadow-soft);
     border: none;
     height: 100%;
-    margin-top: 60px;
-    margin-bottom: 40px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-img-wrapper {
@@ -279,6 +281,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
     color: var(--slate);
     margin-bottom: 1.5rem;
+    flex-grow: 1;
 }
 
 .card-footer-flex {
@@ -435,7 +438,7 @@ footer {
     padding: 120px 0 60px;
     text-align: center;
     color: var(--white);
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
 .page-header h1 {
