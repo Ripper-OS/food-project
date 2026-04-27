@@ -69,3 +69,24 @@ class Profile(models.Model):
         managed = True
         verbose_name = 'Profile'
         verbose_name_plural = 'Profiles'
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Menu, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.amount = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.title} x{self.quantity}"
+
+    class Meta:
+        db_table = 'cart'
+        managed = True
+        verbose_name = 'Cart'
+        verbose_name_plural = 'Cart Items'
+

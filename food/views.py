@@ -132,17 +132,70 @@ def profile_update(request):
     }
     return render(request, 'profile_update.html',context)
 
+@login_required(login_url='signin')
 def displaycart(request):
-    return render(request, 'displaycart.html')
+    trolley = Cart.objects.filter(user=request.user)
+    subtotal = sum(item.amount for item in trolley)
+    vat = subtotal * 0.075
+    total = subtotal + vat
+    profile = None
+    try:
+        profile = Profile.objects.get(user=request.user)
+    except Profile.DoesNotExist:
+        pass
+    context = {
+        'trolley': trolley,
+        'subtotal': subtotal,
+        'vat': vat,
+        'total': total,
+        'profile': profile,
+    }
+    return render(request, 'displaycart.html', context)
 
+@login_required(login_url='signin')
 def shopcart(request):
+    if request.method == 'POST':
+        menu_id = request.POST.get('menu_id')
+        quantity = int(request.POST.get('quantity', 1))
+        product = Menu.objects.get(pk=menu_id)
+        # Check if item already in cart — update quantity instead of duplicating
+        cart_item, created = Cart.objects.get_or_create(
+            user=request.user,
+            product=product,
+            defaults={'quantity': quantity}
+        )
+        if not created:
+            cart_item.quantity += quantity
+            cart_item.save()
+        messages.success(request, f'{product.title} added to cart!')
     return redirect('displaycart')
 
+@login_required(login_url='signin')
 def deleteitem(request):
+    if request.method == 'POST':
+        item_id = request.POST.get('item_id')
+        Cart.objects.filter(id=item_id, user=request.user).delete()
+        messages.success(request, 'Item removed from cart.')
     return redirect('displaycart')
 
+@login_required(login_url='signin')
 def increase(request):
+    if request.method == 'POST':
+        item_id = request.POST.get('itemid')
+        new_qty = int(request.POST.get('quant', 1))
+        try:
+            cart_item = Cart.objects.get(id=item_id, user=request.user)
+            cart_item.quantity = new_qty
+            cart_item.save()
+        except Cart.DoesNotExist:
+            pass
     return redirect('displaycart')
 
+@login_required(login_url='signin')
 def pay(request):
+    if request.method == 'POST':
+        # Clear the user's cart after payment
+        Cart.objects.filter(user=request.user).delete()
+        messages.success(request, 'Payment successful! Your order is being prepared.')
     return render(request, 'callback.html')
+

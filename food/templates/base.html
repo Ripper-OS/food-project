@@ -50,7 +50,7 @@
                     <a href="#" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
                     <a href="{% url 'displaycart' %}" class="cart-btn position-relative">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="cart-badge">0</span>
+                        <span class="cart-badge">{{cart_count}}</span>
                     </a>
                     {% if user.is_authenticated %}
                         <div class="dropdown">
