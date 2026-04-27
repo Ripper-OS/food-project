@@ -47,7 +47,12 @@
                     </li>
                 </ul>
                 <div class="nav-actions d-flex align-items-center gap-3">
-                    <a href="#" class="search-btn" id="searchToggle"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <div class="search-wrapper" id="searchWrapper">
+                        <form action="{% url 'menu' %}" method="GET" class="search-container">
+                            <input type="text" name="q" placeholder="Search dish..." class="search-input-inline" id="searchInputInline">
+                            <button type="submit" class="search-submit-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
                     <a href="{% url 'displaycart' %}" class="cart-btn position-relative">
                         <i class="fa-solid fa-bag-shopping"></i>
                         {% if cart_count %}<span class="cart-badge">{{cart_count}}</span>{% endif %}
@@ -72,18 +77,7 @@
         </div>
     </nav>
 
-    <!-- Search Overlay -->
-    <div class="search-overlay" id="searchOverlay">
-        <div class="container">
-            <form action="{% url 'menu' %}" method="GET" class="search-form">
-                <div class="search-input-wrapper">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" name="q" placeholder="Search for dishes..." class="search-input" id="searchInput" autocomplete="off">
-                    <button type="button" class="search-close-btn" id="searchClose"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </form>
-        </div>
-    </div>
+
 
     <!-- Main Content -->
     <main>

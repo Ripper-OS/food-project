@@ -10,27 +10,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Search overlay toggle
-    const searchToggle = document.getElementById('searchToggle');
-    const searchOverlay = document.getElementById('searchOverlay');
-    const searchClose = document.getElementById('searchClose');
-    const searchInput = document.getElementById('searchInput');
+    // Inline Search Logic
+    const searchContainer = document.querySelector('.search-container');
+    const searchInput = document.getElementById('searchInputInline');
+    const searchSubmit = document.querySelector('.search-submit-btn');
 
-    if (searchToggle && searchOverlay) {
-        searchToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            searchOverlay.classList.add('active');
-            setTimeout(() => searchInput.focus(), 300);
+    if (searchContainer && searchInput && searchSubmit) {
+        searchSubmit.addEventListener('click', (e) => {
+            if (!searchContainer.classList.contains('active')) {
+                e.preventDefault();
+                searchContainer.classList.add('active');
+                searchInput.focus();
+            } else if (searchInput.value.trim() === '') {
+                e.preventDefault();
+                searchContainer.classList.remove('active');
+            }
+            // If active and has value, form submits naturally
         });
 
-        searchClose.addEventListener('click', () => {
-            searchOverlay.classList.remove('active');
+        // Close search on click outside
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target) && searchContainer.classList.contains('active')) {
+                searchContainer.classList.remove('active');
+            }
         });
 
         // Close on Escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
-                searchOverlay.classList.remove('active');
+            if (e.key === 'Escape' && searchContainer.classList.contains('active')) {
+                searchContainer.classList.remove('active');
+                searchInput.blur();
             }
         });
     }
