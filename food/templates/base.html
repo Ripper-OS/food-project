@@ -47,15 +47,14 @@
                     </li>
                 </ul>
                 <div class="nav-actions d-flex align-items-center gap-3">
-                    <div class="search-wrapper" id="searchWrapper">
-                        <form action="{% url 'menu' %}" method="GET" class="search-container">
-                            <input type="text" name="q" placeholder="Search dish..." class="search-input-inline" id="searchInputInline">
-                            <button type="submit" class="search-submit-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
-                    </div>
-                    <a href="{% url 'displaycart' %}" class="cart-btn position-relative">
+                    <!-- Search Toggle -->
+                    <button type="button" class="search-btn" id="searchToggle" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <!-- Cart -->
+                    <a href="{% if user.is_authenticated %}{% url 'displaycart' %}{% else %}{% url 'signin' %}{% endif %}" class="cart-btn position-relative">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        {% if cart_count %}<span class="cart-badge">{{cart_count}}</span>{% endif %}
+                        <span class="cart-badge">{{cart_count}}</span>
                     </a>
                     {% if user.is_authenticated %}
                         <div class="dropdown">
@@ -77,27 +76,37 @@
         </div>
     </nav>
 
-
-
-    <!-- Main Content -->
-    <main>
-        <!-- Toast Messages -->
-        {% if messages %}
-        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999; margin-top: 80px;">
-            {% for message in messages %}
-            <div class="toast show align-items-center text-white border-0 mb-2 {% if message.tags == 'error' %}bg-danger{% elif message.tags == 'success' %}bg-success{% else %}bg-primary{% endif %}" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        {% if message.tags == 'success' %}<i class="fas fa-check-circle me-2"></i>{% elif message.tags == 'error' %}<i class="fas fa-exclamation-circle me-2"></i>{% endif %}
-                        {{ message }}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    <!-- Expandable Search Bar -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="container">
+            <form action="{% url 'menu' %}" method="GET" class="search-form-wrapper">
+                <div class="search-input-group">
+                    <i class="fa-solid fa-magnifying-glass search-input-icon"></i>
+                    <input type="text" name="q" id="searchInput" class="search-input" placeholder="Search for dishes..." autocomplete="off">
+                    <button type="button" class="search-close-btn" id="searchClose" aria-label="Close search">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="messages-container">
+        <div class="container">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-2" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             {% endfor %}
         </div>
-        {% endif %}
+    </div>
+    {% endif %}
 
+    <!-- Main Content -->
+    <main>
         {% block content %}{% endblock %}
     </main>
 

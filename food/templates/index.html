@@ -67,12 +67,12 @@
             </div>
 
             <!-- Breakfast -->
-            <div class="row mb-5 gy-5">
+            {% if breakfast %}
+            <div class="row mb-5">
                 <div class="col-12"><h3 class="mb-4">Breakfast Specials</h3></div>
-                {% if breakfast %}
-                    {% for item in breakfast %}
-                    <div class="col-lg-3 col-md-6">
-                        <a href="{% url 'details' item.id %}" class="text-decoration-none">
+                {% for item in breakfast %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <a href="{% url 'details' item.id %}" class="text-decoration-none">
                         <div class="food-card">
                             <div class="card-img-wrapper">
                                 <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
@@ -81,22 +81,29 @@
                             <p class="text-truncate">{{ item.description }}</p>
                             <div class="card-footer-flex">
                                 <span class="price">£{{ item.price }}</span>
-                                <span class="btn-add-cart"><i class="fa-solid fa-arrow-right"></i></span>
+                                <form action="{% url 'shopcart' %}" method="POST" class="d-inline add-cart-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="menu_id" value="{{ item.id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn-add-cart" title="Add to cart">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                {% endif %}
+                    </a>
+                </div>
+                {% endfor %}
             </div>
+            {% endif %}
 
             <!-- Lunch -->
-            <div class="row mb-5 gy-5">
+            {% if lunch %}
+            <div class="row mb-5">
                 <div class="col-12"><h3 class="mb-4">Lunch Favorites</h3></div>
-                {% if lunch %}
-                    {% for item in lunch %}
-                    <div class="col-lg-3 col-md-6">
-                        <a href="{% url 'details' item.id %}" class="text-decoration-none">
+                {% for item in lunch %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <a href="{% url 'details' item.id %}" class="text-decoration-none">
                         <div class="food-card">
                             <div class="card-img-wrapper">
                                 <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
@@ -105,22 +112,29 @@
                             <p class="text-truncate">{{ item.description }}</p>
                             <div class="card-footer-flex">
                                 <span class="price">£{{ item.price }}</span>
-                                <span class="btn-add-cart"><i class="fa-solid fa-arrow-right"></i></span>
+                                <form action="{% url 'shopcart' %}" method="POST" class="d-inline add-cart-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="menu_id" value="{{ item.id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn-add-cart" title="Add to cart">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                {% endif %}
+                    </a>
+                </div>
+                {% endfor %}
             </div>
+            {% endif %}
             
             <!-- Dinner -->
-            <div class="row gy-5">
+            {% if dinner %}
+            <div class="row">
                 <div class="col-12"><h3 class="mb-4">Dinner Delights</h3></div>
-                {% if dinner %}
-                    {% for item in dinner %}
-                    <div class="col-lg-3 col-md-6">
-                        <a href="{% url 'details' item.id %}" class="text-decoration-none">
+                {% for item in dinner %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <a href="{% url 'details' item.id %}" class="text-decoration-none">
                         <div class="food-card">
                             <div class="card-img-wrapper">
                                 <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
@@ -129,14 +143,21 @@
                             <p class="text-truncate">{{ item.description }}</p>
                             <div class="card-footer-flex">
                                 <span class="price">£{{ item.price }}</span>
-                                <span class="btn-add-cart"><i class="fa-solid fa-arrow-right"></i></span>
+                                <form action="{% url 'shopcart' %}" method="POST" class="d-inline add-cart-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="menu_id" value="{{ item.id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn-add-cart" title="Add to cart">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                {% endif %}
+                    </a>
+                </div>
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
     </section>
 

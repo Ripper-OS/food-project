@@ -16,24 +16,37 @@
         </div>
     </section>
 
-    <section class="section-padding">
+    <section class="section-padding pt-0">
         <div class="container">
-            <div class="row gy-5">
+            {% if query %}
+            <div class="d-flex align-items-center justify-content-between mb-4 p-3 bg-light rounded-4">
+                <p class="mb-0 text-muted">Showing results for "<strong class="text-dark">{{ query }}</strong>"</p>
+                <a href="{% url 'menu' %}" class="btn btn-sm btn-outline-secondary rounded-pill px-3">Clear Search</a>
+            </div>
+            {% endif %}
+            <div class="row">
                 {% if menu %}
                     {% for item in menu %}
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 mb-5">
                         <a href="{% url 'details' item.id %}" class="text-decoration-none">
-                        <div class="food-card">
-                            <div class="card-img-wrapper">
-                                <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
+                            <div class="food-card">
+                                <div class="card-img-wrapper">
+                                    <img src="{{ item.img.url }}" alt="{{ item.title }}" class="food-card-img">
+                                </div>
+                                <h3>{{ item.title }}</h3>
+                                <p class="text-truncate">{{ item.description }}</p>
+                                <div class="card-footer-flex">
+                                    <span class="price">£{{ item.price }}</span>
+                                    <form action="{% url 'shopcart' %}" method="POST" class="d-inline add-cart-form">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="menu_id" value="{{ item.id }}">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit" class="btn-add-cart" title="Add to cart">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                            <h3>{{ item.title }}</h3>
-                            <p class="text-truncate">{{ item.description }}</p>
-                            <div class="card-footer-flex">
-                                <span class="price">£{{ item.price }}</span>
-                                <span class="btn-add-cart"><i class="fa-solid fa-arrow-right"></i></span>
-                            </div>
-                        </div>
                         </a>
                     </div>
                     {% endfor %}
@@ -41,7 +54,7 @@
                     <div class="col-12 text-center py-5">
                         <i class="fas fa-utensils fa-4x text-muted mb-3 d-block"></i>
                         <h3>No items found in the menu.</h3>
-                        <p class="text-muted">Check back soon for delicious new items!</p>
+                        <p class="text-muted">Check back soon for delicious updates!</p>
                     </div>
                 {% endif %}
             </div>

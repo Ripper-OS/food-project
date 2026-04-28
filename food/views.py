@@ -24,10 +24,11 @@ def index(request):
     return render(request, 'index.html', context)
 
 def menu(request):
-    menu = Menu.objects.all()
     query = request.GET.get('q', '')
     if query:
-        menu = menu.filter(title__icontains=query) | Menu.objects.filter(description__icontains=query)
+        menu = Menu.objects.filter(title__icontains=query)
+    else:
+        menu = Menu.objects.all()
 
     context = {
         'menu': menu,
