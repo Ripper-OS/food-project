@@ -18,4 +18,5 @@ urlpatterns = [
     path('deleteitem', views.deleteitem, name='deleteitem'),
     path('increase', views.increase, name='increase'),
     path('pay', views.pay, name='pay'),
+    path('api/search', views.search_suggestions, name='search_suggestions'),
 ]

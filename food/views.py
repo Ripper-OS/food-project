@@ -1,6 +1,7 @@
 
 
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -204,3 +205,17 @@ def pay(request):
         messages.success(request, 'Payment successful! Your order is being prepared.')
     return render(request, 'callback.html')
 
+
+def search_suggestions(request):
+    query = request.GET.get('q', '').strip()
+    results = []
+    if len(query) >= 2:
+        items = Menu.objects.filter(title__icontains=query)[:6]
+        for item in items:
+            results.append({
+                'id': item.id,
+                'title': item.title,
+                'price': item.price,
+                'img': item.img.url if item.img else '',
+            })
+    return JsonResponse({'results': results})
