@@ -10,49 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ──── Search Overlay ────
-    const searchToggle = document.getElementById('searchToggle');
-    const searchOverlay = document.getElementById('searchOverlay');
-    const searchClose = document.getElementById('searchClose');
+    // ──── Header Search ────
     const searchInput = document.getElementById('searchInput');
     const searchSuggestions = document.getElementById('searchSuggestions');
-    const searchHint = document.getElementById('searchHint');
     const searchForm = document.getElementById('searchForm');
 
     let debounceTimer = null;
     let activeIndex = -1;
 
-    function openSearch() {
-        if (!searchOverlay) return;
-        searchOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => searchInput.focus(), 200);
-    }
-
-    function closeSearch() {
-        if (!searchOverlay) return;
-        searchOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-        searchInput.value = '';
-        searchSuggestions.innerHTML = '';
-        searchHint.style.display = '';
-        activeIndex = -1;
-    }
-
-    if (searchToggle) searchToggle.addEventListener('click', openSearch);
-    if (searchClose) searchClose.addEventListener('click', closeSearch);
-
     // Close on Escape or clicking outside
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
-            closeSearch();
+    document.addEventListener('click', (e) => {
+        if (searchSuggestions && searchInput && !searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+            searchSuggestions.classList.remove('show');
         }
     });
 
-    if (searchOverlay) {
-        searchOverlay.addEventListener('click', (e) => {
-            if (e.target === searchOverlay || e.target.classList.contains('search-overlay-inner')) {
-                closeSearch();
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && searchSuggestions) {
+            searchSuggestions.classList.remove('show');
+            searchInput.blur();
+        }
+    });
+
+    if (searchInput && searchSuggestions) {
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.value.trim().length >= 2 || searchSuggestions.innerHTML.trim() !== '') {
+                searchSuggestions.classList.add('show');
             }
         });
     }
@@ -73,17 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     <i class="fa-regular fa-face-meh"></i>
                     <p>No dishes found for "${query}"</p>
                 </div>`;
-            searchHint.style.display = 'none';
+            searchSuggestions.classList.add('show');
             return;
         }
 
         if (results.length === 0) {
             searchSuggestions.innerHTML = '';
-            searchHint.style.display = '';
+            searchSuggestions.classList.remove('show');
             return;
         }
 
-        searchHint.style.display = 'none';
         searchSuggestions.innerHTML = results.map((item, i) => `
             <a href="/details/${item.id}" class="search-suggestion-item" data-index="${i}">
                 ${item.img ? `<img src="${item.img}" alt="${item.title}" class="search-suggestion-img">` : ''}
@@ -94,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <i class="fa-solid fa-arrow-right search-suggestion-arrow"></i>
             </a>
         `).join('');
+        searchSuggestions.classList.add('show');
     }
 
     function fetchSuggestions(query) {
@@ -109,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(() => {
                 searchSuggestions.innerHTML = '';
+                searchSuggestions.classList.remove('show');
             });
     }
 
@@ -122,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Keyboard navigation inside suggestions
         searchInput.addEventListener('keydown', (e) => {
             const items = searchSuggestions.querySelectorAll('.search-suggestion-item');
-            if (!items.length) return;
+            if (!items.length || !searchSuggestions.classList.contains('show')) return;
 
             if (e.key === 'ArrowDown') {
                 e.preventDefault();

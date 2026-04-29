@@ -47,10 +47,15 @@
                     </li>
                 </ul>
                 <div class="nav-actions d-flex align-items-center gap-3">
-                    <!-- Search Toggle -->
-                    <button type="button" class="search-btn" id="searchToggle" aria-label="Search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                    <!-- Header Search -->
+                    <div class="header-search position-relative">
+                        <form action="{% url 'menu' %}" method="GET" class="header-search-form" id="searchForm">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" name="q" id="searchInput" class="header-search-input" placeholder="Search..." autocomplete="off">
+                        </form>
+                        <!-- Live Suggestions Dropdown -->
+                        <div class="header-search-dropdown shadow-sm" id="searchSuggestions"></div>
+                    </div>
                     <!-- Cart -->
                     <a href="{% if user.is_authenticated %}{% url 'displaycart' %}{% else %}{% url 'signin' %}{% endif %}" class="cart-btn position-relative">
                         <i class="fa-solid fa-bag-shopping"></i>
@@ -76,29 +81,6 @@
         </div>
     </nav>
 
-    <!-- Search Overlay -->
-    <div class="search-overlay" id="searchOverlay">
-        <div class="search-overlay-inner">
-            <div class="container">
-                <div class="search-header">
-                    <h5 class="search-overlay-title">What are you craving?</h5>
-                    <button type="button" class="search-close-btn" id="searchClose" aria-label="Close search">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-                <form action="{% url 'menu' %}" method="GET" class="search-form-wrapper" id="searchForm">
-                    <div class="search-input-group">
-                        <i class="fa-solid fa-magnifying-glass search-input-icon"></i>
-                        <input type="text" name="q" id="searchInput" class="search-input" placeholder="Search dishes, desserts, drinks..." autocomplete="off">
-                        <span class="search-kbd">Enter ↵</span>
-                    </div>
-                </form>
-                <!-- Live Suggestions -->
-                <div class="search-suggestions" id="searchSuggestions"></div>
-                <p class="search-hint" id="searchHint">Type at least 2 characters to search</p>
-            </div>
-        </div>
-    </div>
 
     <!-- Messages -->
     {% if messages %}
